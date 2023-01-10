@@ -1,16 +1,16 @@
 server:
   port: 8080
 spring:
-  cloud:
-    gateway:
-      routes:
-        - id: resource
-          uri: http://127.0.0.1:8090
-          predicates:
-            - Path=/resource
-          filters:
-            - TokenRelay=
-            - RemoveRequestHeader=Cookie
+#  cloud:
+#    gateway:
+#      routes:
+#        - id: resource
+#          uri: http://127.0.0.1:8090
+#          predicates:
+#            - Path=/resource
+#          filters:
+#            - TokenRelay=
+#            - RemoveRequestHeader=Cookie
   security:
     oauth2:
       client:
@@ -25,3 +25,15 @@ spring:
         provider:
           spring:
             issuer-uri: http://localhost:9000
+            authorization-uri: http://localhost:9000/oauth2/authorize
+            token-uri: http://localhost:9000/oauth2/token
+
+logging:
+  level:
+    root: INFO
+    org.springframework.web: INFO
+    org.springframework.security: INFO
+    org.springframework.security.oauth2: INFO
+    #    org.springframework.boot.autoconfigure: DEBUG
+    org.springframework.web.client.RestTemplate: DEBUG
+    org.springframework.web.reactive.function.client.ExchangeFunctions: TRACE

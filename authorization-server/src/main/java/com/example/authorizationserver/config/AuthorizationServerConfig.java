@@ -48,7 +48,6 @@ public class AuthorizationServerConfig {
                 .scope(OidcScopes.OPENID)
                 .scope("resource.read")
                 .build();
-
         return new InMemoryRegisteredClientRepository(registeredClient);
     }
 
